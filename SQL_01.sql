@@ -1,8 +1,8 @@
--- Code 2-1
+-- Code 1-1
 
 CREATE DATABASE analysis;
 
--- Code 2-2: 
+-- Code 1-2: 
 
 CREATE TABLE teachers (
     id bigserial,
@@ -16,7 +16,7 @@ CREATE TABLE teachers (
 -- cette commande va supprimer la table
 -- DROP TABLE teachers;
 
--- Code 2-3 
+-- Code 1-3 
 
 INSERT INTO teachers (first_name, last_name, school, hire_date, salary)
 VALUES ('Janet', 'Smith', 'F.D. Roosevelt HS', '2011-10-30', 36200),
