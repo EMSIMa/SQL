@@ -1,11 +1,4 @@
----------------------------------------------------------------------------
--- Practical SQL: A Beginner's Guide to Storytelling with Data, 2nd Edition
--- by Anthony DeBarros
-
--- Chapter 4 Code Examples
-----------------------------------------------------------------------------
-
--- Listing 4-1: Character data types in action
+-- Code 4-1: 
 
 CREATE TABLE char_data_types (
     char_column char(10),
@@ -22,7 +15,7 @@ COPY char_data_types TO 'C:\YourDirectory\typetest.txt'
 WITH (FORMAT CSV, HEADER, DELIMITER '|');
 
 
--- Listing 4-2: Number data types in action
+-- Code 4-2: 
 
 CREATE TABLE number_data_types (
     numeric_column numeric(20,5),
@@ -47,7 +40,7 @@ SELECT
 FROM number_data_types
 WHERE numeric_column = .7;
 
--- Listing 4-4: The timestamp and interval types in action
+-- Code 4-4: 
 
 CREATE TABLE date_time_types (
     timestamp_column timestamp with time zone,
@@ -63,7 +56,7 @@ VALUES
 
 SELECT * FROM date_time_types;
 
--- Listing 4-5: Using the interval data type
+-- Code 4-5: 
 -- Assumes script 4-4 has been run
 
 SELECT
@@ -72,7 +65,7 @@ SELECT
     timestamp_column - interval_column AS new_date
 FROM date_time_types;
 
--- Listing 4-6: Three CAST() examples
+-- Code 4-6: 
 
 SELECT timestamp_column, CAST(timestamp_column AS varchar(10))
 FROM date_time_types;
