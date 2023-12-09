@@ -1,11 +1,4 @@
----------------------------------------------------------------------------
--- Practical SQL: A Beginner's Guide to Storytelling with Data, 2nd Edition
--- by Anthony DeBarros
-
--- Chapter 8 Code Examples
-----------------------------------------------------------------------------
-
--- Listing 8-1: Declaring a single-column natural key as primary key
+-- Code 7-1: Declaring a single-column natural key as primary key
 
 -- As a column constraint
 CREATE TABLE natural_key_example (
@@ -25,9 +18,9 @@ CREATE TABLE natural_key_example (
     CONSTRAINT license_key PRIMARY KEY (license_id)
 );
 
--- Listing 8-2: Example of a primary key violation
+-- Code 7-2: Example of a primary key violation
 -- Note: You will need to create the natural_key_example table
--- using either of the two statements in Listing 8-1.
+-- using either of the two statements in Code 7-1.
 
 INSERT INTO natural_key_example (license_id, first_name, last_name)
 VALUES ('T229901', 'Gem', 'Godfrey');
@@ -35,7 +28,7 @@ VALUES ('T229901', 'Gem', 'Godfrey');
 INSERT INTO natural_key_example (license_id, first_name, last_name)
 VALUES ('T229901', 'John', 'Mitchell');
 
--- Listing 8-3: Declaring a composite primary key as a natural key
+-- Code 7-3: Declaring a composite primary key as a natural key
 
 CREATE TABLE natural_key_composite_example (
     student_id text,
@@ -44,7 +37,7 @@ CREATE TABLE natural_key_composite_example (
     CONSTRAINT student_key PRIMARY KEY (student_id, school_day)
 );
 
--- Listing 8-4: Example of a composite primary key violation
+-- Code 7-4: Example of a composite primary key violation
 INSERT INTO natural_key_composite_example (student_id, school_day, present)
 VALUES(775, '2022-01-22', 'Y');
 
@@ -54,7 +47,7 @@ VALUES(775, '2022-01-23', 'Y');
 INSERT INTO natural_key_composite_example (student_id, school_day, present)
 VALUES(775, '2022-01-23', 'N');
 
--- Listing 8-5: Declaring a bigint column as a surrogate key using IDENTITY
+-- Code 7-5: Declaring a bigint column as a surrogate key using IDENTITY
 
 CREATE TABLE surrogate_key_example (
     order_number bigint GENERATED ALWAYS AS IDENTITY,
@@ -70,7 +63,7 @@ VALUES ('Beachball Polish', '2020-03-15 09:21-07'),
 
 SELECT * FROM surrogate_key_example;
 
--- Listing 8-6: Restarting an IDENTITY sequence
+-- Code 7-6: Restarting an IDENTITY sequence
 
 INSERT INTO surrogate_key_example
 OVERRIDING SYSTEM VALUE
@@ -83,7 +76,7 @@ VALUES ('Aloe Plant', '2020-03-15 10:09-07');
 
 SELECT * FROM surrogate_key_example;
 
--- Listing 8-7: A foreign key example
+-- Code 7-7: A foreign key example
 
 CREATE TABLE licenses (
     license_id text,
@@ -108,7 +101,7 @@ VALUES ('A203391', '2022-03-17', 'T229901');
 INSERT INTO registrations (registration_id, registration_date, license_id)
 VALUES ('A75772', '2022-03-17', 'T000001');
 
--- Listing 8-8: Examples of CHECK constraints
+-- Code 7-8: Examples of CHECK constraints
 
 CREATE TABLE check_constraint_example (
     user_id bigint GENERATED ALWAYS AS IDENTITY,
@@ -126,7 +119,7 @@ VALUES ('admin');
 INSERT INTO check_constraint_example (salary)
 VALUES (-10000);
 
--- Listing 8-9: A UNIQUE constraint example
+-- Code 7-9: A UNIQUE constraint example
 
 CREATE TABLE unique_constraint_example (
     contact_id bigint GENERATED ALWAYS AS IDENTITY,
@@ -146,7 +139,7 @@ VALUES ('Betty', 'Diaz', 'bdiaz@example.org');
 INSERT INTO unique_constraint_example (first_name, last_name, email)
 VALUES ('Sasha', 'Lee', 'slee@example.org');
 
--- Listing 8-10: A NOT NULL constraint example
+-- Code 7-10: A NOT NULL constraint example
 
 CREATE TABLE not_null_example (
     student_id bigint GENERATED ALWAYS AS IDENTITY,
@@ -159,7 +152,7 @@ CREATE TABLE not_null_example (
 INSERT INTO not_null_example (first_name, last_name)
 VALUES ('Sting', NULL);
 
--- Listing 8-11: Dropping and adding a primary key and a NOT NULL constraint
+-- Code 7-11: Dropping and adding a primary key and a NOT NULL constraint
 
 -- Drop
 ALTER TABLE not_null_example DROP CONSTRAINT student_id_key;
@@ -173,7 +166,7 @@ ALTER TABLE not_null_example ALTER COLUMN first_name DROP NOT NULL;
 -- Add
 ALTER TABLE not_null_example ALTER COLUMN first_name SET NOT NULL;
 
--- Listing 8-12: Importing New York City address data
+-- Code 7-12: Importing New York City address data
 
 CREATE TABLE new_york_addresses (
     longitude numeric(9,6),
@@ -189,7 +182,7 @@ COPY new_york_addresses
 FROM 'C:\YourDirectory\city_of_new_york.csv'
 WITH (FORMAT CSV, HEADER);
 
--- Listing 8-13: Benchmark queries for index performance
+-- Code 7-13: Benchmark queries for index performance
 
 EXPLAIN ANALYZE SELECT * FROM new_york_addresses
 WHERE street = 'BROADWAY';
@@ -200,6 +193,6 @@ WHERE street = '52 STREET';
 EXPLAIN ANALYZE SELECT * FROM new_york_addresses
 WHERE street = 'ZWICKY AVENUE';
 
--- Listing 8-14: Creating a B-tree index on the new_york_addresses table
+-- Code 7-14: Creating a B-tree index on the new_york_addresses table
 
 CREATE INDEX street_idx ON new_york_addresses (street);
